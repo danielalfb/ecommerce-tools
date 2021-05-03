@@ -1,10 +1,8 @@
 # **Planejamento das tarefas no ciclo ágil**
 
-## **Projeto:** Criação das ferramentas para gestão de eCommerces
+### **Projeto:** Criação das ferramentas para gestão de eCommerces
 
-## **Time:** Prof. Isidro
-
----
+### **Time:** XP Daniela Barbosa
 
 ## **_Sprint 01 -_** Detalhamento do JSON com a lista dos produtos
 
@@ -30,8 +28,6 @@ Escrever rotinas em **Javascript** que recebam o JSON contendo a lista de produt
 |  10 | Criar função para determinar o departamento mais valioso (departamento com a maior somatória dos valores dos seus itens)                                                      |     aa     |    0,5h    | 04/05/2021 | 04/05/2021 | Prof. Isidro | Backlog |
 |  11 | Criar função para determinar o produto mais caro da loja, bem como seu departamento                                                                                           |     aa     |    0,5h    | 04/05/2021 | 04/05/2021 | Prof. Isidro | Backlog |
 |  12 | Criar função para determinar o produto mais barato da loja, bem como seu departamento                                                                                         |     aa     |    0,5h    | 04/05/2021 | 04/05/2021 | Prof. Isidro | Backlog |
-
----
 
 ## **_Sprint 02 -_** Detalhamento do JSON com a lista dos produtos
 
