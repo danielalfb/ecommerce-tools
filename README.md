@@ -4,6 +4,8 @@
 
 ### **Time:** XP Daniela Barbosa
 
+---
+
 ## **_Sprint 01 -_** Detalhamento do JSON com a lista dos produtos
 
 ### **Objetivo da Sprint:**
@@ -29,11 +31,11 @@ Escrever rotinas em **Javascript** que recebam o JSON contendo a lista de produt
 |  13 | Criar função para determinar o produto mais caro da loja, bem como seu departamento                                                                                           | 0,5h | 04/05  |   04/05 | Prof. Isidro | Backlog |
 |  14 | Criar função para determinar o produto mais barato da loja, bem como seu departamento                                                                                         | 0,5h | 04/05  |   04/05 | Prof. Isidro | Backlog |
 
-## **_Sprint 02 -_** Modelagem dos dados a serem armazenados
+## **_Sprint 02 -_** Criação do Database
 
 ### **Objetivo da Sprint:**
 
-Modelar (segundo o modelo Entidade/Relacionamento , conversão para modelo Relacional e modelo físico) da estrutura de dados recebida na Atividade 2, bem como mapear as características e escopo de cada item que forma a estrutura geral do sistema, criar as instruções do BD, scripts, consultas de teste e relatório.
+Modelar (segundo o modelo Entidade/Relacionamento , conversão para modelo Relacional e modelo físico) a estrutura de dados recebida na Atividade 2, bem como mapear as características e escopo de cada item que forma a estrutura geral do sistema, criar as instruções do DB, scripts, consultas de teste e relatório.
 
 ### **Descrição das atividades:**
 
