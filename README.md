@@ -44,7 +44,7 @@ Manipular os objetos no JSON e elaborar listas de visualização dos produtos.
 
 ## **_Sprint 02 -_** Criação do Database
 
-### **Objetivo da Sprint:**
+#### **Objetivo da Sprint:**
 
 Estruturar o Banco de Dados e elaborar queries de teste.
 
