@@ -2,7 +2,7 @@
 
 ### **Projeto:** Criação de ferramentas para gestão de eCommerces
 
-### **Time:** XP Daniela Barbosa
+### **Time:** XPDB 🌟
 
 ---
 
@@ -40,6 +40,8 @@ Manipular os objetos no JSON e elaborar listas de visualização dos produtos.
 | 01-11 | Criar script para determinar e mostrar o produto mais caro da loja, bem como seu departamento                                                                                 |  2   | 13/05  |  13/05  | Backlog |
 | 01-12 | Criar script para determinar e mostrar o produto mais barato da loja, bem como seu departamento                                                                               |  2   | 13/05  |  13/05  | Backlog |
 
+---
+
 ## **_Sprint 02 -_** Criação do Database
 
 ### **Objetivo da Sprint:**
@@ -70,3 +72,7 @@ Estruturar o Banco de Dados e elaborar queries de teste.
 | 02-13 | Criar consultas de junção entre duas tabelas + operação de totalização e agrupamento         |  1   | 20/05  |  20/05  | Backlog |
 | 02-14 | Criar consultas de junção entre três ou mais tabelas + operação de totalização e agrupamento |  1   | 20/05  |  20/05  | Backlog |
 | 02-15 | Elaborar relatório de entrega                                                                |  3   | 20/05  |  21/05  | Backlog |
+
+| Atvidade              | Estimativa (valor atribuído) | Término previsto | Início previsto |
+| --------------------- | ---------------------------- | ---------------- | --------------- |
+| configurar o ambiente | 1                            | 05/05/21         | 05/05/21        |
