@@ -8,7 +8,7 @@
       "disponivel": "sim",
       "emDestaque": "sim",
       "departamento": {
-        "idDepto": 987,
+        "idDepto": 1,
         "nomeDepto": "Informatica e acessórios"
       }
     },
@@ -20,7 +20,7 @@
       "disponivel": "sim",
       "emDestaque": "nao",
       "departamento": {
-        "idDepto": 965,
+        "idDepto": 2,
         "nomeDepto": "Eletroportáteis"
       }
     },
@@ -32,20 +32,44 @@
       "disponivel": "sim",
       "emDestaque": "sim",
       "departamento": {
-        "idDepto": 980,
+        "idDepto": 3,
         "nomeDepto": "TV, áudio e home theater"
       }
     },
     {
-      "codProduto": 1236,
-      "descricao": "Smart TV 50 LG 50UN7310 UHD 4K Wifi Bluetooth Hdr Inteligência Artificial Thinq Ai",
-      "preco": 2374.99,
+      "codProduto": 1237,
+      "descricao": "Smartphone Xiaomi Redmi 9 64GB Dual Chip Android 10 Tela 6,53",
+      "preco": 1259.91,
       "qtdEstoque": 10,
       "disponivel": "sim",
       "emDestaque": "sim",
       "departamento": {
-        "idDepto": 980,
-        "nomeDepto": "TV, áudio e home theater"
+        "idDepto": 4,
+        "nomeDepto": "Celulares"
+      }
+    },
+    {
+      "codProduto": 1238,
+      "descricao": "Jogo Red Dead Redemption 2 - PS4",
+      "preco": 160.92,
+      "qtdEstoque": 50,
+      "disponivel": "sim",
+      "emDestaque": "nao",
+      "departamento": {
+        "idDepto": 4,
+        "nomeDepto": "Games"
+      }
+    },
+    {
+      "codProduto": 1239,
+      "descricao": "Jogo Bioshock 2 Pc",
+      "preco": 18.91,
+      "qtdEstoque": 50,
+      "disponivel": "sim",
+      "emDestaque": "nao",
+      "departamento": {
+        "idDepto": 4,
+        "nomeDepto": "Games, livros e filmes"
       }
     }
   ]
