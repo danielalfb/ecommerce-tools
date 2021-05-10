@@ -1,0 +1,52 @@
+{
+  "produtos": [
+    {
+      "codProduto": 1234,
+      "descricao": "Computador Dell Inspiron XS 12000 8Gb RAM 1 TB HD Intel i5 4g NVidia 1080",
+      "preco": 3500.0,
+      "qtdEstoque": 5,
+      "disponivel": "sim",
+      "emDestaque": "sim",
+      "departamento": {
+        "idDepto": 987,
+        "nomeDepto": "Informatica e acessórios"
+      }
+    },
+    {
+      "codProduto": 1235,
+      "descricao": "Bebedouro Britânia BBE10B Concept Refrigerado 20L",
+      "preco": 237.4,
+      "qtdEstoque": 10,
+      "disponivel": "sim",
+      "emDestaque": "nao",
+      "departamento": {
+        "idDepto": 965,
+        "nomeDepto": "Eletroportáteis"
+      }
+    },
+    {
+      "codProduto": 1236,
+      "descricao": "Smart TV 50 LG 50UN7310 UHD 4K Wifi Bluetooth Hdr Inteligência Artificial Thinq Ai",
+      "preco": 2374.99,
+      "qtdEstoque": 1,
+      "disponivel": "sim",
+      "emDestaque": "sim",
+      "departamento": {
+        "idDepto": 980,
+        "nomeDepto": "TV, áudio e home theater"
+      }
+    },
+    {
+      "codProduto": 1236,
+      "descricao": "Smart TV 50 LG 50UN7310 UHD 4K Wifi Bluetooth Hdr Inteligência Artificial Thinq Ai",
+      "preco": 2374.99,
+      "qtdEstoque": 10,
+      "disponivel": "sim",
+      "emDestaque": "sim",
+      "departamento": {
+        "idDepto": 980,
+        "nomeDepto": "TV, áudio e home theater"
+      }
+    }
+  ]
+}
