@@ -1,14 +1,15 @@
-let produtos = [];
-let formato = {
+let products = [];
+let format = {
   minimumFractionDigits: 2,
   style: 'currency',
   currency: 'BRL',
 };
 
-let qtdEstoqueTotal;
-let qtdEmDestaque = 0;
-let qtdDisponivel = 0;
-let valorTotalInvent;
+let totalHighlighted = 0;
+let totalAvailable = 0;
+let total = 0;
+let totalStockNum = 0;
+let result;
 
 render();
 
@@ -20,92 +21,88 @@ function fetchJson(url) {
 
 async function render() {
   const data = await fetchJson('./database/listaDeProdutos.json');
-  produtos = data.produtos;
-  totalEstoque();
-  totalDestaqueDisponivel();
-  totalInventario();
-  indivDepartamento(1);
+  products = data.produtos;
+  totalStock();
+  highlightedAndAvailable();
+  totalInventory();
+  Departament(4);
 }
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
 
-function totalEstoque() {
-  let qtdEstoqueArr = [];
-  for (let i = 0; i < produtos.length; i++) {
-    qtdEstoqueArr.push(produtos[i].qtdEstoque);
+function totalStock() {
+  for (let product of products) {
+    totalStockNum += Number(product.qtdEstoque);
   }
-  qtdEstoqueTotal = qtdEstoqueArr.reduce((acc, crr) => acc + crr);
-  console.log(`Quantidade total de itens em estoque: ${qtdEstoqueTotal}`);
+  console.log(`Quantidade total de itens em estoque: ${totalStockNum}`);
 }
 
 // Quantidade total de itens em destaque (somatória das quantidades dos itens marcados como "emDestaque : sim")
 // Quantidade total de itens disponíveis (similar ao anterior)
 
-function totalDestaqueDisponivel() {
-  for (let i = 0; i < produtos.length; i++) {
-    if (produtos[i].emDestaque === 'sim') {
-      qtdEmDestaque++;
+function highlightedAndAvailable() {
+  for (let product of products) {
+    if (product.emDestaque === 'sim') {
+      totalHighlighted++;
     }
-    if (produtos[i].disponivel === 'sim') {
-      qtdDisponivel++;
+    if (product.disponivel === 'sim') {
+      totalAvailable++;
     }
   }
-  console.log(`Quantidade total de itens em destaque: ${qtdEmDestaque}`);
-  console.log(`Quantidade total de itens disponíveis: ${qtdDisponivel}`);
+  console.log(`Quantidade total de itens em destaque: ${totalHighlighted}`);
+  console.log(`Quantidade total de itens disponíveis: ${totalAvailable}`);
 }
 
 // Valor total do inventário da empresa (somatória dos valores individuais multiplicado pela quantidade em estoque)
 // Valor do ticket médio dos produtos da empresa (basicamente o valor total do inventário dividido pelo número de itens)
 
-function totalInventario() {
-  let valorIndiv = [];
-  let ticketMedioGeral = 0;
+function totalInventory() {
+  let averageTicket = 0;
 
-  for (let i = 0; i < produtos.length; i++) {
-    valorIndiv.push(produtos[i].qtdEstoque * produtos[i].preco);
+  for (let product of products) {
+    total += product.qtdEstoque * product.preco;
   }
-  valorTotalInvent = valorIndiv.reduce((acc, crr) => acc + crr);
-  ticketMedioGeral = valorTotalInvent / produtos.length;
+  averageTicket = total / totalStockNum; //  total / products.length
+
   console.log(
-    `Valor total do inventário da empresa: ${valorTotalInvent.toLocaleString(
+    `Valor total do inventário da empresa: ${total.toLocaleString(
       'pt-BR',
-      formato
+      format
     )}`
   );
   console.log(
-    `Valor do ticket médio dos produtos da empresa: ${ticketMedioGeral.toLocaleString(
+    `Valor do ticket médio dos produtos da empresa: ${averageTicket.toLocaleString(
       'pt-BR',
-      formato
+      format
     )}`
   );
 }
 
 // Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele)
 // Valor total do inventário por departamento (similar ao item anterior)
+class Dept {
+  constructor(name, totalItems, totalInvent) {
+    this.name = name;
+    this.totalItems = totalItems;
+    this.totalInvent = totalInvent.toLocaleString('pt-br', format);
+  }
+}
 
-function indivDepartamento(dept) {
-  let totalItensDepto = 0;
-  let nomeDepto;
-  let qtdInventarioDepto = [];
+function Departament(dept) {
+  let deptName;
+  let totalDeptItems = 0;
+  let totalDeptInvent = 0;
 
-  for (let i = 0; i < produtos.length; i++) {
-    if (dept === produtos[i].departamento.idDepto) {
-      totalItensDepto++;
-      nomeDepto = produtos[i].departamento.nomeDepto;
-      qtdInventarioDepto.push(totalItensDepto * produtos[i].preco);
+  for (let product of products) {
+    if (dept === product.departamento.idDepto) {
+      totalDeptItems++;
+      deptName = product.departamento.nomeDepto;
+      totalDeptInvent += totalDeptItems * product.preco;
     }
   }
 
-  valorTotalInvent = qtdInventarioDepto.reduce((acc, crr) => acc + crr);
-  console.log(
-    `Quantidade de itens no departamento "${nomeDepto}": ${totalItensDepto}`
-  );
-  console.log(
-    `Valor total de inventário do departamento "${nomeDepto}": ${valorTotalInvent.toLocaleString(
-      'pt-BR',
-      formato
-    )}`
-  );
+  result = new Dept(deptName, totalDeptItems, totalDeptInvent);
+  console.log(result);
 }
 
 // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
