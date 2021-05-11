@@ -55,8 +55,8 @@
     "disponivel": "sim",
     "emDestaque": "nao",
     "departamento": {
-      "idDepto": 4,
-      "nomeDepto": "Games"
+      "idDepto": 5,
+      "nomeDepto": "Games, livros e filmes"
     }
   },
   {
@@ -67,7 +67,7 @@
     "disponivel": "sim",
     "emDestaque": "nao",
     "departamento": {
-      "idDepto": 4,
+      "idDepto": 5,
       "nomeDepto": "Games, livros e filmes"
     }
   }
