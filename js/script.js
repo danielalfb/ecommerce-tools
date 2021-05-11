@@ -1,4 +1,5 @@
 let products = [];
+let deptList = [];
 let format = {
   minimumFractionDigits: 2,
   style: 'currency',
@@ -8,7 +9,9 @@ let format = {
 let totalHighlighted = 0;
 let totalAvailable = 0;
 let total = 0;
-let totalStockNum = 0;
+let totalStock = 0;
+let averageTicket = 0;
+
 let result;
 
 render();
@@ -21,8 +24,8 @@ function fetchJson(url) {
 
 async function render() {
   const data = await fetchJson('./database/listaDeProdutos.json');
-  products = data.produtos;
-  totalStock();
+  products = data;
+  totalStoreStock();
   highlightedAndAvailable();
   totalInventory();
   Departament(4);
@@ -30,11 +33,11 @@ async function render() {
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
 
-function totalStock() {
+function totalStoreStock() {
   for (let product of products) {
-    totalStockNum += Number(product.qtdEstoque);
+    totalStock += Number(product.qtdEstoque);
   }
-  console.log(`Quantidade total de itens em estoque: ${totalStockNum}`);
+  console.log(`Quantidade total de itens em estoque: ${totalStock}`);
 }
 
 // Quantidade total de itens em destaque (somatória das quantidades dos itens marcados como "emDestaque : sim")
@@ -57,12 +60,10 @@ function highlightedAndAvailable() {
 // Valor do ticket médio dos produtos da empresa (basicamente o valor total do inventário dividido pelo número de itens)
 
 function totalInventory() {
-  let averageTicket = 0;
-
   for (let product of products) {
     total += product.qtdEstoque * product.preco;
   }
-  averageTicket = total / totalStockNum; //  total / products.length
+  averageTicket = total / totalStock; //  total / products.length
 
   console.log(
     `Valor total do inventário da empresa: ${total.toLocaleString(
@@ -100,12 +101,15 @@ function Departament(dept) {
       totalDeptInvent += totalDeptItems * product.preco;
     }
   }
-
   result = new Dept(deptName, totalDeptItems, totalDeptInvent);
   console.log(result);
 }
 
 // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
+function allDepartaments() {
+  for (let product of products) {
+  }
+}
 
 // Departamento mais valioso (qual o departamento que tem a maior somatória dos valores dos itens)
 
