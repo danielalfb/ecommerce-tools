@@ -70,5 +70,17 @@
       "idDepto": 5,
       "nomeDepto": "Games, livros e filmes"
     }
+  },
+  {
+    "codProduto": 1240,
+    "descricao": "Smart TV 42 LG 50UN7310 UHD 4K Wifi Bluetooth Hdr Inteligência Artificial Thinq Ai",
+    "preco": 1374.99,
+    "qtdEstoque": 1,
+    "disponivel": "sim",
+    "emDestaque": "nao",
+    "departamento": {
+      "idDepto": 3,
+      "nomeDepto": "TV, áudio e home theater"
+    }
   }
 ]

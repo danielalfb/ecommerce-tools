@@ -11,8 +11,10 @@ let totalAvailable = 0;
 let total = 0;
 let totalStock = 0;
 let averageTicket = 0;
+let mostValuableList = [];
 
 let result;
+let product;
 
 render();
 
@@ -25,16 +27,20 @@ function fetchJson(url) {
 async function render() {
   const data = await fetchJson('./database/listaDeProdutos.json');
   products = data;
-  totalStoreStock();
-  highlightedAndAvailable();
-  totalInventory();
-  DepartamentValue(1);
+
+  showTotalStoreStock();
+  showHighlightedAndAvailable();
+  showTotalInventory();
+  showDepartamentValue(5);
+  showMostValuableDept();
+  showMostValuableProduct();
+  showLeastValuableProduct();
 }
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
 
-function totalStoreStock() {
-  for (let product of products) {
+function showTotalStoreStock() {
+  for (product of products) {
     totalStock += Number(product.qtdEstoque);
   }
   console.log(`Quantidade total de itens em estoque: ${totalStock}`);
@@ -43,8 +49,8 @@ function totalStoreStock() {
 // Quantidade total de itens em destaque (somatória das quantidades dos itens marcados como "emDestaque : sim")
 // Quantidade total de itens disponíveis (similar ao anterior)
 
-function highlightedAndAvailable() {
-  for (let product of products) {
+function showHighlightedAndAvailable() {
+  for (product of products) {
     if (product.emDestaque === 'sim') {
       totalHighlighted++;
     }
@@ -59,8 +65,8 @@ function highlightedAndAvailable() {
 // Valor total do inventário da empresa (somatória dos valores individuais multiplicado pela quantidade em estoque)
 // Valor do ticket médio dos produtos da empresa (basicamente o valor total do inventário dividido pelo número de itens)
 
-function totalInventory() {
-  for (let product of products) {
+function showTotalInventory() {
+  for (product of products) {
     total += product.qtdEstoque * product.preco;
   }
   averageTicket = total / totalStock; //  total / products.length
@@ -88,13 +94,12 @@ class chosenDept {
     this.name = name;
     this.totalItems = totalItems;
     this.totalInvent = totalInvent.toLocaleString('pt-br', format);
-    this.averageTicket = averageTicket.toLocaleString('pt-br', format);
   }
 }
 
-function DepartamentValue(dept) {
-  let deptName;
-  let totalDeptItems = 0;
+function showDepartamentValue(dept) {
+  let deptName = '';
+  let totalDeptItemsNum = 0;
   let totalDeptInvent = 0;
   let averageTicketDept = 0;
 
@@ -103,21 +108,51 @@ function DepartamentValue(dept) {
   );
 
   for (let departament of departaments) {
-    totalDeptItems++;
+    totalDeptItemsNum++;
     deptName = departament.departamento.nomeDepto;
-    totalDeptInvent += totalDeptItems * departament.preco;
-    averageTicketDept = totalDeptInvent / totalDeptItems;
+    totalDeptInvent += totalDeptItemsNum * departament.preco;
+    averageTicketDept = [
+      { name: departament.departamento.nomeDepto },
+      {
+        averageTicket: (totalDeptInvent / totalDeptItemsNum).toLocaleString(
+          'pt-br',
+          format
+        ),
+      },
+    ];
   }
-  result = new chosenDept(
-    deptName,
-    totalDeptItems,
-    totalDeptInvent,
-    averageTicketDept
-  );
+  result = new chosenDept(deptName, totalDeptItemsNum, totalDeptInvent);
   console.log(result);
+  console.log(averageTicketDept);
 }
+
 // Departamento mais valioso (qual o departamento que tem a maior somatória dos valores dos itens)
+function showMostValuableDept() {
+  const deptList = new Map();
+  for (product of products) {
+    deptList.set(
+      product.departamento.nomeDepto,
+      products
+        .filter(
+          (item) =>
+            item.departamento.nomeDepto === product.departamento.nomeDepto
+        )
+        .reduce((acc, cur) => acc + cur.preco, 0)
+    );
+  }
+  let mostValuable = Math.max(...deptList.values());
+
+  for (let item of deptList.values()) {
+    if (item === mostValuable) {
+      console.log(
+        ` O departamento mais valioso é: "${product.departamento.nomeDepto}"`
+      );
+    }
+  }
+}
 
 // Produto mais caro da loja (bem como seu departamento)
+function showMostValuableProduct() {}
 
 // Produto mais barato da loja (bem como seu departamento)
+function showLeastValuableProduct() {}
