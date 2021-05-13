@@ -31,10 +31,9 @@ async function render() {
   showTotalStoreStock();
   showHighlightedAndAvailable();
   showTotalInventory();
-  showDepartamentValue(5);
+  showDepartamentValue(1);
   showMostValuableDept();
-  showMostValuableProduct();
-  showLeastValuableProduct();
+  showMostAndLeastValuableProduct();
 }
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
@@ -89,7 +88,7 @@ function showTotalInventory() {
 // Valor total do inventário por departamento (similar ao item anterior)
 // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
 
-class chosenDept {
+class Departament {
   constructor(name, totalItems, totalInvent, averageTicket) {
     this.name = name;
     this.totalItems = totalItems;
@@ -121,7 +120,7 @@ function showDepartamentValue(dept) {
       },
     ];
   }
-  result = new chosenDept(deptName, totalDeptItemsNum, totalDeptInvent);
+  result = new Departament(deptName, totalDeptItemsNum, totalDeptInvent);
   console.log(result);
   console.log(averageTicketDept);
 }
@@ -141,18 +140,38 @@ function showMostValuableDept() {
     );
   }
   let mostValuable = Math.max(...deptList.values());
-
   for (let item of deptList.values()) {
     if (item === mostValuable) {
       console.log(
-        ` O departamento mais valioso é: "${product.departamento.nomeDepto}"`
+        ` O departamento mais valioso é o "${product.departamento.nomeDepto}"`
       );
     }
   }
 }
 
-// Produto mais caro da loja (bem como seu departamento)
-function showMostValuableProduct() {}
+class Product {
+  constructor(name, dept) {
+    this.name = name;
+    this.dept = dept;
+  }
+}
+function showMostAndLeastValuableProduct() {
+  let productsPrice = [];
+  for (product of products) {
+    productsPrice.push(product.preco);
+  }
+  let mostValuable = Math.max(...productsPrice);
+  let leastValuable = Math.min(...productsPrice);
 
-// Produto mais barato da loja (bem como seu departamento)
-function showLeastValuableProduct() {}
+  for (product of products) {
+    let item = new Product(product.descricao, product.departamento.nomeDepto);
+    // Produto mais caro da loja (bem como seu departamento)
+    if (mostValuable === product.preco) {
+      console.log(item);
+    }
+    // Produto mais barato da loja (bem como seu departamento)
+    if (leastValuable === product.preco) {
+      console.log(item);
+    }
+  }
+}
