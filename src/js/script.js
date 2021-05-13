@@ -1,5 +1,4 @@
 let products = [];
-let deptList = [];
 let format = {
   minimumFractionDigits: 2,
   style: 'currency',
