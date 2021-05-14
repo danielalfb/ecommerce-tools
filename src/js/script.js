@@ -20,12 +20,12 @@ async function render() {
   const data = await fetchJson('./database/Products.json');
   products = data;
 
-  // showTotalStoreStock();
-  // showHighlightedAndAvailable();
-  // showTotalInventory();
-  // showDepartamentValue(1);
+  showTotalStoreStock();
+  showHighlightedAndAvailable();
+  showTotalInventory();
+  showDepartamentValue(1);
   showMostValuableDept();
-  // showMostAndLeastValuableProduct();
+  showMostAndLeastValuableProduct();
 }
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
@@ -154,12 +154,14 @@ function showMostAndLeastValuableProduct() {
 
   for (product of products) {
     let item = new Product(product.descricao, product.nomeDepto, product.preco);
-    // Produto mais caro da loja (bem como seu departamento)
-    if (mostValuable === product.preco) {
-      console.log(item);
-    }
     // Produto mais barato da loja (bem como seu departamento)
     if (leastValuable === product.preco) {
+      console.log('Produto mais barato da loja:');
+      console.log(item);
+    }
+    // Produto mais caro da loja (bem como seu departamento)
+    if (mostValuable === product.preco) {
+      console.log('Produto mais caso da loja:');
       console.log(item);
     }
   }
