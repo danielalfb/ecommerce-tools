@@ -17,7 +17,7 @@ function fetchJson(url) {
 }
 
 async function render() {
-  const data = await fetchJson('./database/listaDeProdutos.json');
+  const data = await fetchJson('./database/Products.json');
   products = data;
 
   showTotalStoreStock();
@@ -97,16 +97,14 @@ function showDepartamentValue(dept) {
   let totalDeptInvent = 0;
   let averageTicketDept = 0;
 
-  const departaments = products.filter(
-    (product) => product.departamento.idDepto == dept
-  );
+  const departaments = products.filter((product) => product.idDepto == dept);
 
   for (let departament of departaments) {
     totalDeptItemsNum++;
-    deptName = departament.departamento.nomeDepto;
+    deptName = departament.nomeDepto;
     totalDeptInvent += totalDeptItemsNum * departament.preco;
     averageTicketDept = [
-      { name: departament.departamento.nomeDepto },
+      { name: departament.nomeDepto },
       {
         averageTicket: (totalDeptInvent / totalDeptItemsNum).toLocaleString(
           'pt-br',
@@ -125,21 +123,16 @@ function showMostValuableDept() {
   const deptList = new Map(); //método apresentado pelo Welisson (https://www.javascripttutorial.net/es6/javascript-map/)
   for (product of products) {
     deptList.set(
-      product.departamento.nomeDepto,
+      product.nomeDepto,
       products
-        .filter(
-          (item) =>
-            item.departamento.nomeDepto === product.departamento.nomeDepto
-        )
+        .filter((item) => item.nomeDepto === product.nomeDepto)
         .reduce((acc, cur) => acc + cur.preco, 0)
     );
   }
   let mostValuable = Math.max(...deptList.values());
   for (let item of deptList.values()) {
     if (item === mostValuable) {
-      console.log(
-        ` O departamento mais valioso é o "${product.departamento.nomeDepto}"`
-      );
+      console.log(` O departamento mais valioso é o "${product.nomeDepto}"`);
     }
   }
 }
@@ -159,7 +152,7 @@ function showMostAndLeastValuableProduct() {
   let leastValuable = Math.min(...productsPrice);
 
   for (product of products) {
-    let item = new Product(product.descricao, product.departamento.nomeDepto);
+    let item = new Product(product.descricao, product.nomeDepto);
     // Produto mais caro da loja (bem como seu departamento)
     if (mostValuable === product.preco) {
       console.log(item);
