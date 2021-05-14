@@ -165,6 +165,7 @@ function showMostValuableDept() {
     }
   }
 }
+
 class Product {
   constructor(name, departament, price) {
     this.name = name;
