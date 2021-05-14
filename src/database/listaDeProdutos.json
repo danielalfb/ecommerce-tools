@@ -6,10 +6,9 @@
     "qtdEstoque": 5,
     "disponivel": "sim",
     "emDestaque": "sim",
-    "departamento": {
-      "idDepto": 1,
-      "nomeDepto": "Informatica e acessórios"
-    }
+
+    "idDepto": 1,
+    "nomeDepto": "Informatica e acessórios"
   },
   {
     "codProduto": 1235,
@@ -18,10 +17,9 @@
     "qtdEstoque": 10,
     "disponivel": "sim",
     "emDestaque": "nao",
-    "departamento": {
-      "idDepto": 2,
-      "nomeDepto": "Eletroportáteis"
-    }
+
+    "idDepto": 2,
+    "nomeDepto": "Eletroportáteis"
   },
   {
     "codProduto": 1236,
@@ -30,10 +28,9 @@
     "qtdEstoque": 1,
     "disponivel": "sim",
     "emDestaque": "sim",
-    "departamento": {
-      "idDepto": 3,
-      "nomeDepto": "TV, áudio e home theater"
-    }
+
+    "idDepto": 3,
+    "nomeDepto": "TV, áudio e home theater"
   },
   {
     "codProduto": 1237,
@@ -42,10 +39,9 @@
     "qtdEstoque": 10,
     "disponivel": "sim",
     "emDestaque": "sim",
-    "departamento": {
-      "idDepto": 4,
-      "nomeDepto": "Celulares"
-    }
+
+    "idDepto": 4,
+    "nomeDepto": "Celulares"
   },
   {
     "codProduto": 1238,
@@ -54,10 +50,9 @@
     "qtdEstoque": 50,
     "disponivel": "sim",
     "emDestaque": "nao",
-    "departamento": {
-      "idDepto": 5,
-      "nomeDepto": "Games, livros e filmes"
-    }
+
+    "idDepto": 5,
+    "nomeDepto": "Games, livros e filmes"
   },
   {
     "codProduto": 1239,
@@ -66,10 +61,9 @@
     "qtdEstoque": 50,
     "disponivel": "sim",
     "emDestaque": "nao",
-    "departamento": {
-      "idDepto": 5,
-      "nomeDepto": "Games, livros e filmes"
-    }
+
+    "idDepto": 5,
+    "nomeDepto": "Games, livros e filmes"
   },
   {
     "codProduto": 1240,
@@ -78,9 +72,8 @@
     "qtdEstoque": 1,
     "disponivel": "sim",
     "emDestaque": "nao",
-    "departamento": {
-      "idDepto": 3,
-      "nomeDepto": "TV, áudio e home theater"
-    }
+
+    "idDepto": 3,
+    "nomeDepto": "TV, áudio e home theater"
   }
 ]
