@@ -23,7 +23,7 @@ async function render() {
   showTotalStoreStock();
   showHighlightedAndAvailable();
   showTotalInventory();
-  showDepartamentValue(1);
+  showDepartamentValue(5);
   showMostValuableDept();
   showMostAndLeastValuableProduct();
 }
@@ -33,6 +33,12 @@ function showTotalStoreStock() {
     totalStock += Number(product.qtdEstoque);
   }
   console.log(`Quantidade total de itens em estoque: ${totalStock}`);
+
+  let totalStockShow = document.getElementById('total-items');
+  let p = document.createElement('p');
+  p.innerHTML = `Quantidade total de itens em estoque: <strong>${totalStock}</strong>
+  `;
+  totalStockShow.appendChild(p);
 }
 
 function showHighlightedAndAvailable() {
@@ -48,26 +54,44 @@ function showHighlightedAndAvailable() {
   }
   console.log(`Quantidade total de itens em destaque: ${totalHighlighted}`);
   console.log(`Quantidade total de itens disponíveis: ${totalAvailable}`);
+
+  let highlighted = document.getElementById('total-items-highlight');
+  let p = document.createElement('p');
+  p.innerHTML = `Quantidade total de itens em destaque: <strong>${totalHighlighted}</strong>
+  `;
+  highlighted.appendChild(p);
+
+  let available = document.getElementById('total-items-available');
+  let p2 = document.createElement('p');
+  p2.innerHTML = `Quantidade total de itens disponíveis: <strong>${totalAvailable}</strong>
+  `;
+  available.appendChild(p2);
 }
 
 function showTotalInventory() {
   for (product of products) {
     total += product.qtdEstoque * product.preco;
   }
-  averageTicket = total / totalStock; //  total / products.length
+  averageTicket = total / totalStock;
 
+  let result = total.toLocaleString('pt-BR', format);
+  let resultAverage = averageTicket.toLocaleString('pt-BR', format);
+
+  console.log(`Valor total do inventário da empresa: ${result}`);
   console.log(
-    `Valor total do inventário da empresa: ${total.toLocaleString(
-      'pt-BR',
-      format
-    )}`
+    `Valor do ticket médio dos produtos da empresa: ${resultAverage}`
   );
-  console.log(
-    `Valor do ticket médio dos produtos da empresa: ${averageTicket.toLocaleString(
-      'pt-BR',
-      format
-    )}`
-  );
+
+  let totalInvent = document.getElementById('total-inventory');
+  let p = document.createElement('p');
+  p.innerHTML = `Valor total do inventário da empresa: <strong>${result}</strong>
+  `;
+  totalInvent.appendChild(p);
+  let totalTicket = document.getElementById('total-ticketm-geral');
+  let p2 = document.createElement('p');
+  p2.innerHTML = `Valor total do inventário da empresa: <strong>${resultAverage}</strong>
+  `;
+  totalTicket.appendChild(p2);
 }
 class Departament {
   constructor(name, totalItems, totalInvent) {
@@ -101,6 +125,20 @@ function showDepartamentValue(dept) {
   }
   console.log(new Departament(deptName, totalDeptItemsNum, totalDeptInvent)); // Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele) e valor total do inventário por departamento (similar ao item anterior)
   console.log(averageTicketDept); // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
+
+  let result = totalDeptInvent.toLocaleString('pt-br', format);
+  let deptDiv = document.getElementById('dept-info');
+  let p = document.createElement('p');
+  p.innerHTML = `Informações sobre o departamento: <strong>${deptName}</strong>`;
+  deptDiv.appendChild(p);
+
+  let p2 = document.createElement('p');
+  p2.innerHTML = `1. Total de itens: ${totalDeptItemsNum}<br> 
+  2. Valor total do inventário: ${totalDeptInvent}<br> 
+  3. Valor do ticket médio: ${averageTicketDept[1].averageTicket}<br>
+  <h5>(Para selecionar outro departamento, passe o id do mesmo na função).</h5>
+  `;
+  deptDiv.appendChild(p2);
 }
 
 function showMostValuableDept() {
@@ -119,6 +157,11 @@ function showMostValuableDept() {
   for (var [key, value] of deptList.entries()) {
     if (mostValuable === value) {
       console.log(` O departamento mais valioso é o "${key}".`);
+
+      let deptDiv = document.getElementById('dept-most-valuable');
+      let p = document.createElement('p');
+      p.innerHTML = `Departamento mais valioso: <strong>${key}</strong>`;
+      deptDiv.appendChild(p);
     }
   }
 }
@@ -142,10 +185,21 @@ function showMostAndLeastValuableProduct() {
     if (leastValuable === product.preco) {
       console.log('Produto mais barato da loja:');
       console.log(item);
+
+      let deptDiv = document.getElementById('product-most-valuable');
+      let p = document.createElement('p');
+      p.innerHTML = `Produto mais barato da loja: <strong>${item.name}</strong>,
+      localizado em "<strong>${item.departament}</strong>"`;
+      deptDiv.appendChild(p);
     }
     if (mostValuable === product.preco) {
       console.log('Produto mais caro da loja:');
       console.log(item);
+      let deptDiv = document.getElementById('product-least-valuable');
+      let p = document.createElement('p');
+      p.innerHTML = `Produto mais caro da loja: <strong>${item.name}</strong>,
+      localizado em "<strong>${item.departament}</strong>"`;
+      deptDiv.appendChild(p);
     }
   }
 }
