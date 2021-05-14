@@ -20,12 +20,12 @@ async function render() {
   const data = await fetchJson('./database/Products.json');
   products = data;
 
-  showTotalStoreStock();
-  showHighlightedAndAvailable();
-  showTotalInventory();
-  showDepartamentValue(1);
+  // showTotalStoreStock();
+  // showHighlightedAndAvailable();
+  // showTotalInventory();
+  // showDepartamentValue(1);
   showMostValuableDept();
-  showMostAndLeastValuableProduct();
+  // showMostAndLeastValuableProduct();
 }
 
 // Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
@@ -83,7 +83,7 @@ function showTotalInventory() {
 // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
 
 class Departament {
-  constructor(name, totalItems, totalInvent, averageTicket) {
+  constructor(name, totalItems, totalInvent) {
     this.name = name;
     this.totalItems = totalItems;
     this.totalInvent = totalInvent.toLocaleString('pt-br', format);
@@ -92,7 +92,6 @@ class Departament {
 
 function showDepartamentValue(dept) {
   let deptName = '';
-  let result = '';
   let totalDeptItemsNum = 0;
   let totalDeptInvent = 0;
   let averageTicketDept = 0;
@@ -113,8 +112,7 @@ function showDepartamentValue(dept) {
       },
     ];
   }
-  result = new Departament(deptName, totalDeptItemsNum, totalDeptInvent);
-  console.log(result);
+  console.log(new Departament(deptName, totalDeptItemsNum, totalDeptInvent));
   console.log(averageTicketDept);
 }
 
@@ -126,21 +124,24 @@ function showMostValuableDept() {
       product.nomeDepto,
       products
         .filter((item) => item.nomeDepto === product.nomeDepto)
-        .reduce((acc, cur) => acc + cur.preco, 0)
+        .reduce((acc, cur) => acc + cur.preco * cur.qtdEstoque, 0)
     );
   }
+
   let mostValuable = Math.max(...deptList.values());
-  for (let item of deptList.values()) {
-    if (item === mostValuable) {
-      console.log(` O departamento mais valioso é o "${product.nomeDepto}"`);
+
+  for (var [key, value] of deptList.entries()) {
+    if (mostValuable === value) {
+      console.log(` O departamento mais valioso é o "${key}".`);
     }
   }
 }
 
 class Product {
-  constructor(name, departament) {
+  constructor(name, departament, price) {
     this.name = name;
     this.departament = departament;
+    this.price = price.toLocaleString('pt-br', format);
   }
 }
 function showMostAndLeastValuableProduct() {
@@ -152,7 +153,7 @@ function showMostAndLeastValuableProduct() {
   let leastValuable = Math.min(...productsPrice);
 
   for (product of products) {
-    let item = new Product(product.descricao, product.nomeDepto);
+    let item = new Product(product.descricao, product.nomeDepto, product.preco);
     // Produto mais caro da loja (bem como seu departamento)
     if (mostValuable === product.preco) {
       console.log(item);
