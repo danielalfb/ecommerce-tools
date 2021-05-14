@@ -28,17 +28,12 @@ async function render() {
   showMostAndLeastValuableProduct();
 }
 
-// Quantidade total de itens em estoque (somatória das quantidades de todos os produtos)
-
 function showTotalStoreStock() {
   for (product of products) {
     totalStock += Number(product.qtdEstoque);
   }
   console.log(`Quantidade total de itens em estoque: ${totalStock}`);
 }
-
-// Quantidade total de itens em destaque (somatória das quantidades dos itens marcados como "emDestaque : sim")
-// Quantidade total de itens disponíveis (similar ao anterior)
 
 function showHighlightedAndAvailable() {
   let totalHighlighted = 0;
@@ -54,9 +49,6 @@ function showHighlightedAndAvailable() {
   console.log(`Quantidade total de itens em destaque: ${totalHighlighted}`);
   console.log(`Quantidade total de itens disponíveis: ${totalAvailable}`);
 }
-
-// Valor total do inventário da empresa (somatória dos valores individuais multiplicado pela quantidade em estoque)
-// Valor do ticket médio dos produtos da empresa (basicamente o valor total do inventário dividido pelo número de itens)
 
 function showTotalInventory() {
   for (product of products) {
@@ -77,11 +69,6 @@ function showTotalInventory() {
     )}`
   );
 }
-
-// Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele)
-// Valor total do inventário por departamento (similar ao item anterior)
-// Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
-
 class Departament {
   constructor(name, totalItems, totalInvent) {
     this.name = name;
@@ -112,11 +99,10 @@ function showDepartamentValue(dept) {
       },
     ];
   }
-  console.log(new Departament(deptName, totalDeptItemsNum, totalDeptInvent));
-  console.log(averageTicketDept);
+  console.log(new Departament(deptName, totalDeptItemsNum, totalDeptInvent)); // Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele) e valor total do inventário por departamento (similar ao item anterior)
+  console.log(averageTicketDept); // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
 }
 
-// Departamento mais valioso (qual o departamento que tem a maior somatória dos valores dos itens)
 function showMostValuableDept() {
   const deptList = new Map(); //método apresentado pelo Welisson (https://www.javascripttutorial.net/es6/javascript-map/)
   for (product of products) {
@@ -136,7 +122,6 @@ function showMostValuableDept() {
     }
   }
 }
-
 class Product {
   constructor(name, departament, price) {
     this.name = name;
@@ -154,14 +139,12 @@ function showMostAndLeastValuableProduct() {
 
   for (product of products) {
     let item = new Product(product.descricao, product.nomeDepto, product.preco);
-    // Produto mais barato da loja (bem como seu departamento)
     if (leastValuable === product.preco) {
       console.log('Produto mais barato da loja:');
       console.log(item);
     }
-    // Produto mais caro da loja (bem como seu departamento)
     if (mostValuable === product.preco) {
-      console.log('Produto mais caso da loja:');
+      console.log('Produto mais caro da loja:');
       console.log(item);
     }
   }
