@@ -133,9 +133,9 @@ function showDepartamentValue(dept) {
   deptDiv.appendChild(p);
 
   let p2 = document.createElement('p');
-  p2.innerHTML = `1. Total de itens: ${totalDeptItemsNum}<br> 
-  2. Valor total do inventário: ${totalDeptInvent}<br> 
-  3. Valor do ticket médio: ${averageTicketDept[1].averageTicket}<br>
+  p2.innerHTML = `<ol id="dept-info-list"><li>Total de itens: ${totalDeptItemsNum}</li> 
+  <li>Valor total do inventário: ${result}</li> 
+  <li>Valor do ticket médio: ${averageTicketDept[1].averageTicket}</li></ol>
   <h5>(Para selecionar outro departamento, passe o id do mesmo na função).</h5>
   `;
   deptDiv.appendChild(p2);
@@ -195,6 +195,7 @@ function showMostAndLeastValuableProduct() {
     if (mostValuable === product.preco) {
       console.log('Produto mais caro da loja:');
       console.log(item);
+
       let deptDiv = document.getElementById('product-least-valuable');
       let p = document.createElement('p');
       p.innerHTML = `Produto mais caro da loja: <strong>${item.name}</strong>,

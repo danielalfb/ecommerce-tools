@@ -59,7 +59,8 @@ body {
   padding: 20px;
 }
 #results-data ul {
-  list-style-type: none;
+  margin-left: 20px;
+  list-style-type: square;
 }
 #results-data li {
   margin-bottom: 20px;
@@ -70,4 +71,9 @@ body {
 }
 #results-data li h5 {
   font-weight: 300;
+}
+
+#results-data li ol {
+  margin-left: 30px;
+  list-style-type: lower-alpha;
 }
