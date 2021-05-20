@@ -1,26 +1,37 @@
-# Quantos produtos estão em destaque atualmente?
-select sum(qtdEstoque) as totalestoque from Produtos;
+# Arquivo SQL contendo pelo menos 5 consultas contemplando cada condição
 
-# Listar todos os pedidos não finalizados, contemplando data de realização, atual status e os principais dados de contato do cliente responsável (nome, cpf e email).
-select pedidos.id, clientes.nome, clientes.email, pedidos.data, status_pedido.nome from pedidos
+# Consulta contemplando contagem ou totalização:
+# Situação: Quantidade total de itens em estoque.
+select sum(qtdEstoque) as totalestoque from Produtos;
+# Situação: Quantidade total de itens em destaque
+select COUNT(destaque) as produtosdestaque from Produtos
+where destaque = 1;
+
+
+# Consulta contemplando a junção entre 2 tabelas:
+# Situação: Listar todos os pedidos não finalizados, contemplando data de realização, atual status e os principais dados de contato do cliente responsável (nome, cpf e email).
+select pedidos.id, clientes.nome, clientes.email, pedidos.data, status_pedido.nome as statusdopedido from pedidos
 inner join status_pedido on pedidos.statusid = status_pedido.id
 inner join clientes on pedidos.clienteid = clientes.id
 where pedidos.statusid != 8;
 
-# Mostrar todos os pedidos do cliente 'Lidiane', o item da compra e o valor total
+# Consulta contemplando a junção entre 3 tabelas:
+# Situação: Mostrar todos os pedidos do cliente 'Lidiane', o item da compra e o valor total.
 select clientes.nome, produtos.descricao, pedidos_produtos.valortotal from pedidos
 inner join clientes on pedidos.clienteid = clientes.id
 inner join pedidos_produtos on pedidos.id = pedidos_produtos.pedidoid
 inner join produtos on pedidos_produtos.produtoid = produtos.id
 where clienteid = 2;
 
-# Listar todos os produtos vendidos, mostrando seu nome, departamento e preço individual, listar quantas vezes eles foram vendidos e o valor total de vendas de cada produto
+# Consulta contemplando a junção entre 2 tabelas + uma operação de totalização e agrupamento:
+# Situação: Listar todos os produtos vendidos, mostrando seu nome, departamento e preço individual, listar quantas vezes eles foram vendidos e o valor total de vendas de cada produto.
 select departamentos.nome as departamento, produtos.descricao as produto, produtos.preco, count(pedidos_produtos.produtoid) as qtdvendas, sum(produtos.preco) as totalvendas from pedidos_produtos
 inner join produtos on pedidos_produtos.produtoid = produtos.id
 inner join departamentos on produtos.deptid = departamentos.id
 group by produtos.id;
 
-# Listar por nome todos os clientes que fizeram pedidos, mostrar seu endereço e o valor total do pedido
+# Consulta contemplando a junção entre 3 ou mais tabelas + uma operação de totalização e agrupamento:
+# Situação: Listar por nome todos os clientes que fizeram pedidos, mostrar seu endereço e o valor total do pedido.
 select clientes.nome, tipo_enderecos.nome as tipoendereco, enderecos.tipologradouro, 
 enderecos.logradouro, enderecos.numero, enderecos.complemento,enderecos.bairro, enderecos.cep, cidades.cidade, 
 sum(pedidos_produtos.valortotal) as valortotalpedido from cliente_enderecos
