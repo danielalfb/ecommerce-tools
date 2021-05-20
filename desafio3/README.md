@@ -1,8 +1,12 @@
 ## DESAFIO INDIVIDUAL 3
 
 ### **Modelagem**
+<p>
+![src/diagrama01.svg](src/diagrama01.svg)
+</p>
+ ![src/diagrama02.png](src/diagrama02.png)</p>
+</br>
 
-![src/diagrama01.svg](src/diagrama01.svg) ![src/diagrama02.png](src/diagrama02.png)
 
 ---
 
