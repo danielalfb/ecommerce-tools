@@ -312,13 +312,12 @@ where destaque = 1;
 <details>
 <summary>Consulta contemplando a junção entre 2 tabelas</summary>
 
-- _Situação 1:_ Listar todos os pedidos não finalizados, contemplando data de realização, atual status e os principais dados de contato do cliente responsável (nome, cpf e email).
+- _Situação 1:_ Listar todos os pedidos não finalizados, contemplando id do cliente responsável pelo pedido, data de realização e atual status.
 
 ```sql
-select pedidos.id, clientes.nome, clientes.email, pedidos.data, status_pedido.nome from pedidos
+select pedidos.id, pedidos.clienteid, pedidos.data, status_pedido.nome as statusdopedido from pedidos
 inner join status_pedido on pedidos.statusid = status_pedido.id
-inner join clientes on pedidos.clienteid = clientes.id
-where pedidos.statusid != 8
+where pedidos.statusid != 8;
 ```
 
 </details>
@@ -328,8 +327,7 @@ where pedidos.statusid != 8
 - _Situação 1:_ Mostrar todos os pedidos da cliente **'Lidiane'**, o item da compra e o valor total.
 
 ```sql
-select clientes.nome, produtos.descricao, pedidos_produtos.valortotal from pedidos
-inner join clientes on pedidos.clienteid = clientes.id
+select produtos.descricao, pedidos_produtos.valortotal from pedidos
 inner join pedidos_produtos on pedidos.id = pedidos_produtos.pedidoid
 inner join produtos on pedidos_produtos.produtoid = produtos.id
 where clienteid = 2;
@@ -339,14 +337,12 @@ where clienteid = 2;
 <details>
 <summary>Consulta contemplando a junção entre 2 tabelas + uma operação de totalização e agrupamento</summary>
 
-- _Situação 1:_ Listar todos os produtos vendidos, mostrando seu nome, departamento e preço individual, listar quantas vezes eles foram vendidos e o valor total de vendas de cada produto
+- _Situação 1:_ Listar todos os produtos vendidos, mostrando seu nome e preço individual, listar quantas vezes eles foram vendidos e o valor total de vendas de cada produto.
 
 ```sql
-select departamentos.nome as departamento, produtos.descricao as produto, produtos.preco,
-count(pedidos_produtos.produtoid) as qtdvendas, sum(produtos.preco) as totalvendas from pedidos_produtos
+select produtos.descricao as produto, produtos.preco, count(pedidos_produtos.produtoid) as qtdvendas, sum(produtos.preco) as totalvendas from pedidos_produtos
 inner join produtos on pedidos_produtos.produtoid = produtos.id
-inner join departamentos on produtos.deptid = departamentos.id
-group by produtos.id
+group by produtos.id;
 ```
 
 </details>

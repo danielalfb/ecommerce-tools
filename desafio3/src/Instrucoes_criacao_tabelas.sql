@@ -1,3 +1,5 @@
+# Arquivo SQL com as instruções de criação de todas as tabelas
+
 CREATE TABLE `Departamentos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) DEFAULT NULL,
