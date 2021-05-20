@@ -40,7 +40,7 @@ CREATE TABLE `Departamentos` (
 CREATE TABLE `Produtos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `descricao` varchar(100) DEFAULT NULL,
-  `preco` double DEFAULT NULL,
+  `preco` decimal(7,2) DEFAULT NULL,
   `qtdEstoque` int DEFAULT NULL,
   `disponivel` int NOT NULL,
   `destaque` int NOT NULL,
@@ -196,7 +196,7 @@ INSERT INTO produtos (descricao, preco, qtdEstoque, disponivel, destaque, deptid
 VALUES ('ADAPTADOR BLUETOOH USB RECEPTOR DE AUDIO P2', '5.0', '10', '1', '1', '1'),
 ('ALICATE PARA CRIMPAR TL-315 3 EM 1', '15.0', '16', '1', '1', '2'),
 ('CAMERA WEBCAM LOGITECH C270 HD 960-000694', '41.0', '27', '1', '0', '3'),
-('ASPIRADOR NAPPO NLAR-063 ROBOT WIFI 350ML PRETO', '87.0', '2', '1', '0', '4')
+('ASPIRADOR NAPPO NLAR-063 ROBOT WIFI 350ML PRETO', '87.0', '2', '1', '0', '4');
 ```
 
 </details>
@@ -204,11 +204,11 @@ VALUES ('ADAPTADOR BLUETOOH USB RECEPTOR DE AUDIO P2', '5.0', '10', '1', '1', '1
 <summary>3. Inserção de CLIENTES</summary>
 
 ```sql
-INSERT INTO lientes (nome, email, whatsapp, senha)
+INSERT INTO clientes (nome, email, whatsapp, senha)
 VALUES ('Daniela Barbosa', 'daluifernandes@gmail.com', '(31)99999-9999', 's3nha123'),
 ('Lidiane Mara', 'lidi@gmail.com', '(31)99999-9995', 'senha74123'),
 ('Bruna Menezes', 'bruna@gmail.com', '(31)99929-8899', '123senha!'),
-('Jéssica Gonçalvez', 'jessik@gmail.com', '(31)99497-9339', 's!nha741')
+('Jéssica Gonçalvez', 'jessik@gmail.com', '(31)99497-9339', 's!nha741');
 ```
 
 </details>
@@ -216,8 +216,8 @@ VALUES ('Daniela Barbosa', 'daluifernandes@gmail.com', '(31)99999-9999', 's3nha1
 <summary>4. Inserção de CIDADES</summary>
 
 ```sql
-INSERT INTO `gama-ecommerce`.cidades (cidade, estado)
-VALUES ('Rio de Janeiro', 'Rio de Janeiro'), ('São Paulo', 'São Paulo'), ('Belo Horizonte', 'Minas Gerais')
+INSERT INTO cidades (cidade, estado)
+VALUES ('Rio de Janeiro', 'Rio de Janeiro'), ('São Paulo', 'São Paulo'), ('Belo Horizonte', 'Minas Gerais');
 ```
 
 </details>
@@ -226,7 +226,7 @@ VALUES ('Rio de Janeiro', 'Rio de Janeiro'), ('São Paulo', 'São Paulo'), ('Bel
 
 ```sql
 INSERT INTO tipo_enderecos (nome)
-VALUES ('Residencial'), ('Comercial'), ('Presente')
+VALUES ('Residencial'), ('Comercial'), ('Presente');
 ```
 
 </details>
@@ -235,11 +235,11 @@ VALUES ('Residencial'), ('Comercial'), ('Presente')
 
 ```sql
 INSERT INTO enderecos (tipoenderecoid, tipologradouro, logradouro, numero, complemento, bairro, cep, cidadeid)
-VALUES ('1', 'Rua', 'Albuquerque Lins', '902', 'Apt 202', 'Santa Cecilia',' 01230-001', '2'),
-('2', 'Avenida', ' Europa', '158', 'Sala 2', 'Jardim Europa', ' 01449-000', '2'),
-('1', 'Rua', 'Muniz Barreto', '396', 'Apto 202', 'Botafogo', '22251-090', '1'),
-('1', 'Rua', 'da Bahia', '1148', 'Bloco H Apt 601', 'Centro',' 30160-906', '3'),
-('3', 'Rua', 'Augusto de Lima', '46', 'Apto 403', 'Centro',' 30190-001', '3')
+VALUES ('1', 'Rua', 'Albuquerque Lins', '902', 'Apt 202', 'Santa Cecilia','01230001', '2'),
+('2', 'Avenida', ' Europa', '158', 'Sala 2', 'Jardim Europa', '01449000', '2'),
+('1', 'Rua', 'Muniz Barreto', '396', 'Apto 202', 'Botafogo', '22251090', '1'),
+('1', 'Rua', 'da Bahia', '1148', 'Bloco H Apt 601', 'Centro','30160906', '3'),
+('3', 'Rua', 'Augusto de Lima', '46', 'Apto 403', 'Centro','30190001', '3');
 ```
 
 </details>
@@ -248,7 +248,7 @@ VALUES ('1', 'Rua', 'Albuquerque Lins', '902', 'Apt 202', 'Santa Cecilia',' 0123
 
 ```sql
 INSERT INTO cliente_enderecos(clienteid, enderecoid)
-VALUES ('1', '2'), ('1', '4'), ('2', '1'), ('3', '3'), ('4', '5')
+VALUES ('1', '2'), ('1', '4'), ('2', '1'), ('3', '3'), ('4', '5');
 ```
 
 </details>
@@ -256,9 +256,9 @@ VALUES ('1', '2'), ('1', '4'), ('2', '1'), ('3', '3'), ('4', '5')
 <summary>8. Inserção de STATUS dos pedidos</summary>
 
 ```sql
-INSERT INTO tatus_pedido(nome)
+INSERT INTO status_pedido(nome)
 VALUES ('Novo pedido'), ('Cancelado'),  ('Aguardando pagamento'),  ('Pagamento autorizado'),
-('Pagamento negado'), ('Em separação'), ('Em transporte'), ('Entregue')
+('Pagamento negado'), ('Em separação'), ('Em transporte'), ('Entregue');
 ```
 
 </details>
@@ -266,9 +266,9 @@ VALUES ('Novo pedido'), ('Cancelado'),  ('Aguardando pagamento'),  ('Pagamento a
 <summary>9. Inserção de PEDIDOS</summary>
 
 ```sql
-INSERT INTO `gama-ecommerce`.pedidos (data, clienteid, statusid)
+INSERT INTO pedidos (data, clienteid, statusid)
 VALUES ('2021-05-19',  '1', '3'), ('2021-05-19',  '4', '3'), ('2021-05-19', '2', '3'),
-('2021-05-19',  '3', '8')
+('2021-05-19',  '3', '8');
 ```
 
 </details>
@@ -278,8 +278,7 @@ VALUES ('2021-05-19',  '1', '3'), ('2021-05-19',  '4', '3'), ('2021-05-19', '2',
 ```sql
 INSERT INTO pedidos_produtos (pedidoid, produtoid, valorindividual, quantidade, valortotal)
 VALUES ('1', '4', '87', '1', (quantidade * valorindividual)), ('2', '4', '87', '1', (quantidade * valorindividual)),
-('3', '3', '41', '1', (quantidade * valorindividual)), ('4', '1', '5', '1', (quantidade * valorindividual)),
-('4', '2', '15', '1', (quantidade * valorindividual));
+('3', '3', '41', '1', (quantidade * valorindividual)), ('4', '1', '5', '1', (quantidade * valorindividual))
 ```
 
 </details>
