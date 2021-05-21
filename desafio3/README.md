@@ -2,7 +2,9 @@
 
 ### **Modelagem**
 
-![src/diagrama01.svg](src/diagrama01.svg) ![src/diagrama02.png](src/diagrama02.png)
+![src/diagrama01.svg](src/diagrama01.svg)
+
+ ![src/diagrama02.png](src/diagrama02.png)</p>
 
 ---
 
