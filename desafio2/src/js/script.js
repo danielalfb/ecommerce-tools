@@ -8,24 +8,17 @@ let total = 0;
 let totalStock = 0;
 let averageTicket = 0;
 
-render();
-
 function fetchJson(url) {
   return fetch(url).then((ans) => {
     return ans.json();
   });
 }
 
-async function render() {
-  const data = await fetchJson('./database/Products.json');
-  products = data;
-
-  showTotalStoreStock();
-  showHighlightedAndAvailable();
-  showTotalInventory();
-  showDepartamentValue(5);
-  showMostValuableDept();
-  showMostAndLeastValuableProduct();
+function showHTML(id, message, result) {
+  let idName = document.getElementById(id);
+  let p = document.createElement('p');
+  p.innerHTML = `${message} <strong>${result}</strong>`;
+  idName.appendChild(p)
 }
 
 function showTotalStoreStock() {
@@ -34,11 +27,7 @@ function showTotalStoreStock() {
   }
   console.log(`Quantidade total de itens em estoque: ${totalStock}`);
 
-  let totalStockShow = document.getElementById('total-items');
-  let p = document.createElement('p');
-  p.innerHTML = `Quantidade total de itens em estoque: <strong>${totalStock}</strong>
-  `;
-  totalStockShow.appendChild(p);
+  showHTML('total-items', 'Quantidade total de itens em estoque:', totalStock);
 }
 
 function showHighlightedAndAvailable() {
@@ -55,17 +44,8 @@ function showHighlightedAndAvailable() {
   console.log(`Quantidade total de itens em destaque: ${totalHighlighted}`);
   console.log(`Quantidade total de itens disponíveis: ${totalAvailable}`);
 
-  let highlighted = document.getElementById('total-items-highlight');
-  let p = document.createElement('p');
-  p.innerHTML = `Quantidade total de itens em destaque: <strong>${totalHighlighted}</strong>
-  `;
-  highlighted.appendChild(p);
-
-  let available = document.getElementById('total-items-available');
-  let p2 = document.createElement('p');
-  p2.innerHTML = `Quantidade total de itens disponíveis: <strong>${totalAvailable}</strong>
-  `;
-  available.appendChild(p2);
+  showHTML('total-items-highlight', 'Quantidade total de itens em destaque:', totalHighlighted);
+  showHTML('total-items-available', 'Quantidade total de itens disponíveis:', totalAvailable);
 }
 
 function showTotalInventory() {
@@ -82,17 +62,10 @@ function showTotalInventory() {
     `Valor do ticket médio dos produtos da empresa: ${resultAverage}`
   );
 
-  let totalInvent = document.getElementById('total-inventory');
-  let p = document.createElement('p');
-  p.innerHTML = `Valor total do inventário da empresa: <strong>${result}</strong>
-  `;
-  totalInvent.appendChild(p);
-  let totalTicket = document.getElementById('total-ticketm-geral');
-  let p2 = document.createElement('p');
-  p2.innerHTML = `Valor total do inventário da empresa: <strong>${resultAverage}</strong>
-  `;
-  totalTicket.appendChild(p2);
+  showHTML('total-inventory', 'Valor total do inventário da empresa:', result);
+  showHTML('total-ticketm-geral', 'Valor do ticket médio dos produtos da empresa:', resultAverage);
 }
+
 class Departament {
   constructor(name, totalItems, totalInvent) {
     this.name = name;
@@ -107,7 +80,7 @@ function showDepartamentValue(dept) {
   let totalDeptInvent = 0;
   let averageTicketDept = 0;
 
-  const departaments = products.filter((product) => product.idDepto == dept);
+  const departaments = products.filter((product) => product.idDepto === dept);
 
   for (let departament of departaments) {
     totalDeptItemsNum++;
@@ -126,19 +99,16 @@ function showDepartamentValue(dept) {
   console.log(new Departament(deptName, totalDeptItemsNum, totalDeptInvent)); // Somatória de itens por departamento (você deverá retornar um objeto contendo o nome do departamento e o total de itens nele) e valor total do inventário por departamento (similar ao item anterior)
   console.log(averageTicketDept); // Ticket médio por departamento (similar ao item anterior, porém retornando uma lista de objetos que contenha o nome do departamento e o seu ticket médio)
 
+  showHTML('dept-info', 'Informações sobre o departamento:', deptName);
   let result = totalDeptInvent.toLocaleString('pt-br', format);
   let deptDiv = document.getElementById('dept-info');
   let p = document.createElement('p');
-  p.innerHTML = `Informações sobre o departamento: <strong>${deptName}</strong>`;
-  deptDiv.appendChild(p);
-
-  let p2 = document.createElement('p');
-  p2.innerHTML = `<ol id="dept-info-list"><li>Total de itens: ${totalDeptItemsNum}</li> 
+  p.innerHTML = `<ol id="dept-info-list"><li>Total de itens: ${totalDeptItemsNum}</li> 
   <li>Valor total do inventário: ${result}</li> 
   <li>Valor do ticket médio: ${averageTicketDept[1].averageTicket}</li></ol>
   <h5>(Para selecionar outro departamento, passe o id do mesmo na função).</h5>
   `;
-  deptDiv.appendChild(p2);
+  deptDiv.appendChild(p);
 }
 
 function showMostValuableDept() {
@@ -157,11 +127,7 @@ function showMostValuableDept() {
   for (var [key, value] of deptList.entries()) {
     if (mostValuable === value) {
       console.log(` O departamento mais valioso é o "${key}".`);
-
-      let deptDiv = document.getElementById('dept-most-valuable');
-      let p = document.createElement('p');
-      p.innerHTML = `Departamento mais valioso: <strong>${key}</strong>`;
-      deptDiv.appendChild(p);
+      showHTML('dept-most-valuable','Departamento mais valioso:', key);
     }
   }
 }
@@ -186,22 +152,26 @@ function showMostAndLeastValuableProduct() {
     if (leastValuable === product.preco) {
       console.log('Produto mais barato da loja:');
       console.log(item);
-
-      let deptDiv = document.getElementById('product-most-valuable');
-      let p = document.createElement('p');
-      p.innerHTML = `Produto mais barato da loja: <strong>${item.name}</strong>,
-      localizado em "<strong>${item.departament}</strong>"`;
-      deptDiv.appendChild(p);
+      showHTML('product-least-valuable','Produto mais barato da loja:', item.name);
     }
     if (mostValuable === product.preco) {
       console.log('Produto mais caro da loja:');
       console.log(item);
-
-      let deptDiv = document.getElementById('product-least-valuable');
-      let p = document.createElement('p');
-      p.innerHTML = `Produto mais caro da loja: <strong>${item.name}</strong>,
-      localizado em "<strong>${item.departament}</strong>"`;
-      deptDiv.appendChild(p);
+      showHTML('product-most-valuable','Produto mais caro da loja:', item.name);
     }
   }
 }
+
+async function render() {
+  const data = await fetchJson('./src/database/Products.json');
+  products = data;
+
+  showTotalStoreStock();
+  showHighlightedAndAvailable();
+  showTotalInventory();
+  showDepartamentValue(5);
+  showMostValuableDept();
+  showMostAndLeastValuableProduct();
+}
+
+render();
